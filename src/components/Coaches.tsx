@@ -11,7 +11,7 @@ interface Coach {
 }
 
 const coaches: Coach[] = [
-  { name: "Alice", designation: "Tennis Coach", description: "Expert in advanced techniques and strategy, helping players reach their full potential on court.", image: "/coaches/A.jpg" },
+  { name: "Alice", designation: "Tennis Coach", description: "Expert in advanced techniques and strategy, helping players reach their full potential on court.", image: "/coaches/Alice.jpg" },
   { name: "Bob", designation: "Fitness Coach", description: "Specialist in strength and agility training to maximize athletic performance and endurance.", image: "/coaches/Bob.jpg" },
   { name: "Charlie", designation: "Yoga Coach", description: "Focus on flexibility, balance, and breathing exercises to improve overall athletic well-being.", image: "/coaches/Charlie.jpg" },
   { name: "Diana", designation: "Nutrition Coach", description: "Guides athletes to optimize diet and recovery for peak performance during training and events.", image: "/coaches/Diana.jpg" },
