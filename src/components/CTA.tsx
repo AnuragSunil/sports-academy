@@ -1,7 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
+import Link from "next/link";
 export default function CTAHeroScroll() {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -45,20 +45,21 @@ export default function CTAHeroScroll() {
         </motion.div>
 
         {/* Button BELOW image */}
-        <motion.button
-          onClick={() =>
-            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-          }
-          whileHover={{ backgroundColor: "#000", color: "#fff" }}
-          whileTap={{ backgroundColor: "#000", color: "#fff", scale: 0.95 }}
-          transition={{ duration: 0 }} // instant color change
-          className="mt-4 px-14 py-3 rounded-full border-3 border-black bg-transparent 
-                     text-black font-semibold uppercase 
-                     text-[clamp(1.1rem,2.5vw,1.5rem)] tracking-wide
-                     transition-colors duration-150"
-        >
-          Register Now
-        </motion.button>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+  <Link href="/contact" passHref>
+    <motion.button
+      whileHover={{ backgroundColor: "#000", color: "#fff" }}
+      whileTap={{ backgroundColor: "#000", color: "#fff" }}
+      transition={{ duration: 0 }}
+      className="mt-4 px-14 py-3 rounded-full border-3 border-black bg-transparent 
+                 text-black font-semibold uppercase 
+                 text-[clamp(1.1rem,2.5vw,1.5rem)] tracking-wide
+                 transition-colors duration-150"
+    >
+      Register Now
+    </motion.button>
+  </Link>
+</motion.div>
       </div>
     </div>
   );

@@ -16,7 +16,6 @@ const coaches: Coach[] = [
   { name: "Charlie", designation: "Yoga Coach", description: "Focus on flexibility, balance, and breathing exercises to improve overall athletic well-being.", image: "/coaches/charlie.jpg" },
   { name: "Diana", designation: "Nutrition Coach", description: "Guides athletes to optimize diet and recovery for peak performance during training and events.", image: "/coaches/diana.jpg" },
 ];
-
 // Child component for animation-safe hooks
 function CoachCard({ coach, delay }: { coach: Coach; delay: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -27,13 +26,13 @@ function CoachCard({ coach, delay }: { coach: Coach; delay: number }) {
   const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1.05]);
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      className="flex flex-col items-start"
-    >
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay }}
+        className="flex flex-col items-start"
+      >
       <motion.div style={{ scale }} className="relative w-full h-[380px] md:h-[480px] mb-6">
         <Image
           src={coach.image}

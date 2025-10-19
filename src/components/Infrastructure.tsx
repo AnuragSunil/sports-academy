@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-
+import Link from "next/link";
 export default function Infrastructure() {
   const facilities = [
     { name: "Basketball Court", image: "/basketball.jpg" },
@@ -25,15 +25,16 @@ export default function Infrastructure() {
             <p className="text-xl md:text-2xl leading-relaxed">
               Our academy provides world-class facilities designed to bring out the best in every athlete. From modern courts to a fully-equipped gym, we’ve got everything to fuel your journey.
             </p>
-            <motion.button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              whileHover={{ backgroundColor: "#84cc16", color: "#000" }}
-              whileTap={{ backgroundColor: "#84cc16", color: "#000" }}
-              transition={{ duration: 0 }}
-              className="px-14 py-3 rounded-full border-3 border-lime-400 bg-transparent text-lime-400 font-semibold uppercase text-[clamp(1.1rem,2.5vw,1.5rem)] tracking-wide transition-colors duration-150"
-            >
-              Register Now
-            </motion.button>
+            <Link href="/contact" passHref>
+    <motion.button
+      whileHover={{ backgroundColor: "#84cc16", color: "#000" }}
+      whileTap={{ backgroundColor: "#84cc16", color: "#000" }}
+      transition={{ duration: 0 }}
+      className="px-14 py-3 rounded-full border-3 border-lime-400 bg-transparent text-lime-400 font-semibold uppercase text-[clamp(1.1rem,2.5vw,1.5rem)] tracking-wide transition-colors duration-150"
+    >
+      Register Now
+    </motion.button>
+  </Link>
           </motion.div>
 
           {/* Facilities */}

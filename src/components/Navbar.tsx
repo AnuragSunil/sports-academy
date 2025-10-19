@@ -1,21 +1,37 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 export default function Navbar() {
-  const [atTop, setAtTop] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [clickedLink, setClickedLink] = useState<string | null>(null);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => setAtTop(window.scrollY < 10);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 50) {
+        // Always show navbar near top
+        setShowNavbar(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        // scrolling down
+        setShowNavbar(false);
+      } else {
+        // scrolling up
+        setShowNavbar(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ changed to route paths instead of #anchors
   const leftLinks = [
     { label: "About Us", href: "/about" },
     { label: "Location", href: "/location" },
@@ -37,12 +53,11 @@ export default function Navbar() {
     <motion.nav
       className="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-90 shadow-md"
       initial={{ y: -120 }}
-      animate={{ y: atTop ? 0 : -120 }}
-      transition={{ duration: 0.5 }}
+      animate={{ y: showNavbar ? 0 : -120 }}
+      transition={{ duration: 0.3 }}
     >
       {/* Desktop */}
       <div className="hidden md:!flex w-full mx-auto px-6 py-4 items-center font-sans flex-nowrap max-w-[clamp(400px,60vw,1200px)] justify-between">
-        
         {/* Left links */}
         <div className="flex flex-shrink space-x-8 text-eggshell text-sm md:text-base font-thin whitespace-nowrap">
           {leftLinks.map((link) => (
@@ -54,7 +69,9 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 100, damping: 14 }}
             >
-              <Link href={link.href} className="relative z-10">{link.label}</Link>
+              <Link href={link.href} className="relative z-10">
+                {link.label}
+              </Link>
               <motion.div
                 className="absolute top-1/2 left-1/2 h-[2px] bg-lime-400"
                 style={{ translateX: "-50%", translateY: "-50%" }}
@@ -65,9 +82,13 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* ✅ Logo now links back to home */}
-        <Link href="/" className="flex-1 min-w-[150px] text-center text-eggshell font-thin text-base md:text-lg whitespace-normal leading-snug px-4 cursor-pointer">
-          DYNAMIC SPORTS<br/>ACADEMY
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex-1 min-w-[150px] text-center text-eggshell font-thin text-base md:text-lg whitespace-normal leading-snug px-4 cursor-pointer"
+        >
+          DYNAMIC SPORTS<br />
+          ACADEMY
         </Link>
 
         {/* Right links */}
@@ -81,7 +102,9 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 100, damping: 14 }}
             >
-              <Link href={link.href} className="relative z-10">{link.label}</Link>
+              <Link href={link.href} className="relative z-10">
+                {link.label}
+              </Link>
               <motion.div
                 className="absolute top-1/2 left-1/2 h-[2px] bg-lime-400"
                 style={{ translateX: "-50%", translateY: "-50%" }}

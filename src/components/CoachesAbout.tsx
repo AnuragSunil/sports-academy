@@ -23,9 +23,16 @@ export default function MeetOurStaff() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {coaches.map((coach, index) => (
           <div key={coach.name} className={`flex items-start gap-6 ${index % 2 !== 0 ? "md:flex-row-reverse text-right" : ""}`}>
-            <div className="relative w-24 h-24 md:w-28 md:h-28">
-              <Image src={coach.image} alt={coach.name} fill className="object-cover rounded-full shadow-lg" priority />
-            </div>
+            <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden shadow-lg">
+            <Image
+              src={coach.image}
+              alt={coach.name}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+
             <div className={`${index % 2 !== 0 ? "md:text-right" : ""}`}>
               <h3 className="text-2xl font-bold text-[#f5f5e8]">{coach.name}</h3>
               <p className="text-lime-400 font-semibold text-lg mb-2">{coach.designation}</p>
