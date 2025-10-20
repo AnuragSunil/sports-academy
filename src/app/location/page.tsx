@@ -24,13 +24,14 @@ export default function LocationPage() {
 
         {/* Subheading */}
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-gray-700 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed mb-8 md:mb-12 px-2"
-        >
-          We're based in the vibrant heart of Bengaluru — easily accessible and equipped with world-class sports infrastructure.
-        </motion.p>
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.3, duration: 0.6 }}
+  className="text-gray-700 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed mb-8 md:mb-12 px-2"
+>
+  We&apos;re based in the vibrant heart of Bengaluru — easily accessible and equipped with world-class sports infrastructure.
+</motion.p>
+
 
         {/* Address */}
         <motion.div
